@@ -36,11 +36,11 @@ const App = () => {
   }, [dispatch]);
 
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/contacts");
-    }
-  }, [isLoggedIn])
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     navigate("/contacts");
+  //   }
+  // }, [isLoggedIn])
   
 
 

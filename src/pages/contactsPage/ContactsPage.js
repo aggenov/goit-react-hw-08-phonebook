@@ -21,11 +21,11 @@ export default function ContactsPage() {
   const { isLoading, error } = useContact();
   const { isLoggedIn } = useAuth();
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/login');
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate('/login');
+  //   }
+  // }, [isLoggedIn]);
 
   useEffect(() => {
     dispatch(fetchContacts());
