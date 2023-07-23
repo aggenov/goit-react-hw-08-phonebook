@@ -7,8 +7,6 @@ import { useAuth } from 'hooks';
 import { Button } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-import AccountBoxSharpIcon from '@mui/icons-material/AccountBoxSharp';
-
 import { Wrapper, Username, Text } from './UserMenu.styled';
 
 const theme = createTheme({
@@ -32,7 +30,6 @@ export const UserMenu = () => {
     <ThemeProvider theme={theme}>
       <Wrapper>
        
-          {/* <AccountBoxSharpIcon /> */}
           <Username>{user.name}</Username>
         
         <Text>{user.email}</Text>

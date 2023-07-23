@@ -49,7 +49,6 @@ export default function ContactsPage() {
             visible={true}
           />
         ) : (
-          // <p>Loading...</p>
           <>
             <Text>Contacts</Text>
             <Filter />
@@ -57,33 +56,6 @@ export default function ContactsPage() {
           </>
         )}
       </Box>
-      {/* <Helmet>
-        <title>Your contacts</title>
-        </Helmet>
-      <Container component="main">
-        <Box
-          sx={{
-            mt: '64px',
-            display: 'flex',
-
-            justifyContent: 'space-between',
-          }}
-         >
-          <ContactForm />
-          <Box
-            sx={{
-              display: 'flex',
-              border: '1px solid',
-              padding: '5px',
-              flexDirection: 'column',
-            }}
-          >
-            <Filter />
-            <div>{isLoading && 'Request in progress...'}</div>
-            <ContactList />
-          </Box>
-        </Box>
-      </Container> */}
     </>
   );
 }

@@ -1,5 +1,4 @@
 import { Link } from './Navigation.styled';
-
 import { useAuth } from 'hooks';
 
 import { Typography } from '@mui/material';

@@ -9,7 +9,7 @@ export default function NotFoundPage() {
     setTimeout(() => {
       navigate('/contacts', { replace: true });
     }, 3000);
-  }, []);
+  }, [navigate]);
 
   return (
     <Container>
