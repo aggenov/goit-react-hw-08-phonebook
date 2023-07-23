@@ -1,6 +1,10 @@
 import { useEffect, lazy } from "react";
 
-import { Routes, Route, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  // useNavigate
+} from "react-router-dom";
 
 import ProtectedRoute from "routes/ProtectedRoute";
 
@@ -28,7 +32,7 @@ const App = () => {
     isRefreshing
   } = useAuth();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
