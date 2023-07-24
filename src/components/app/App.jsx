@@ -64,9 +64,9 @@ const App = () => {
      <Routes>  
       <Route path="/" element={<Layout />} >
           <Route index element={<Home />} />
-          <Route path="login" element={ <Login />} />
-          <Route path="signup" element={<Register />} />
-            <Route path="contacts" element={
+          <Route path="/login" element={ <Login />} />
+          <Route path="/signup" element={<Register />} />
+            <Route path="/contacts" element={
               <ProtectedRoute isLoggedIn={{ isLoggedIn }}>
                 <Contacts/>
               </ProtectedRoute>
