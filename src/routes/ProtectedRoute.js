@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Navigate } from 'react-router-dom';
 
 function ProtectedRoute({ isLoggedIn, children }) {
@@ -9,3 +11,8 @@ function ProtectedRoute({ isLoggedIn, children }) {
 }
 
 export default ProtectedRoute;
+
+ProtectedRoute.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  children: PropTypes.element.isRequired,
+};

@@ -19,6 +19,7 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isAuthError = false;
+      state.isRefreshing = false;
     },
     [register.rejected](state, _action) {
       state.isAuthError = true;
@@ -30,6 +31,7 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isAuthError = false;
+      state.isRefreshing = false;
     },
     [logIn.rejected](state, _action) {
       state.isAuthError = true;
@@ -41,6 +43,7 @@ const authSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
       state.isRefreshing = false;
+      state.isAuthError = false;
     },
     //----------------
     [refreshUser.pending](state) {

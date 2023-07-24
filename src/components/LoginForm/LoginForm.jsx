@@ -19,9 +19,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
+
+
 export default function LoginForm() {
+  
   const dispatch = useDispatch();
-  const { isAuthError} = useAuth();
+  const { isAuthError } = useAuth();
 
 
   const handleSubmit = e => {
@@ -35,7 +38,6 @@ export default function LoginForm() {
     );
 
     form.reset();
-
   };
 
 

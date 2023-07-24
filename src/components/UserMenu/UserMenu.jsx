@@ -18,11 +18,15 @@ const theme = createTheme({
   },
 });
 
+
+
+
 export const UserMenu = () => {
 
   const dispatch = useDispatch();
   const { user } = useAuth();
 
+  
   const handleLogOut = () => {
     dispatch(logOut());
 }

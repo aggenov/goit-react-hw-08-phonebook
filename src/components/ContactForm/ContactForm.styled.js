@@ -7,9 +7,10 @@ export const FormStyle = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  padding: 0 20px;
+  /* padding: 0 20px; */
+  padding: 0;
   /* border: 1px solid gray; */
-  border-radius: 5px;
+  border-radius: 15px;
 `;
 
 export const Label = styled.label`
@@ -20,11 +21,13 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  margin-top: 10px;
-  width: 200px;
+  margin-top: 5px;
+  width: 250px;
+  height: 25px;
   border: 0.5px solid black;
-  border-radius: 2px;
-  padding: 2px 10px;
+  border-radius: 5px;
+  padding: 5px 15px;
+  letter-spacing: 2px;
 `;
 
 export const Button = styled.button`

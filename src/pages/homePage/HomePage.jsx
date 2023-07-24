@@ -1,11 +1,31 @@
+import { Helmet } from 'react-helmet';
 import { Container, Title, Text } from './HomePage.styled';
 import { useAuth } from 'hooks';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 export default function HomePage() {
-  const { isLoggedIn , user} = useAuth();
+  
+  const { isLoggedIn, user } = useAuth();
+  const navigate = useNavigate();
+  
+   useEffect(() => {
+     setTimeout(() => {
+       if (!isLoggedIn) {
+         navigate('/login', { replace: true });
+        };
+    }, 3000);
+  }, [isLoggedIn, navigate]);
 
   return (
     <Container>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
+
       <Title>Welcome to Home page</Title>
       {!isLoggedIn
       ?(<Text>

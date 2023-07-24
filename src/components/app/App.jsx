@@ -3,7 +3,7 @@ import { useEffect, lazy } from "react";
 import {
   Routes,
   Route,
-  // useNavigate
+  useNavigate,
 } from "react-router-dom";
 
 import ProtectedRoute from "routes/ProtectedRoute";
@@ -20,9 +20,9 @@ import { Layout } from "components/Layout/Laylout";
 
 
 const Home = lazy(() => import('pages/homePage/HomePage'));
-const Register = lazy(() => import('pages/registerPage/RegisterPage'));
 const Login = lazy(() => import('pages/loginPage/LoginPage'));
 const Contacts = lazy(() => import('pages/contactsPage/ContactsPage'));
+const Register = lazy(() => import('pages/registerPage/RegisterPage'));
 const NotFound = lazy(() => import('pages/notFoundPage/NotFoundPage'));
 
 const App = () => {
@@ -32,7 +32,7 @@ const App = () => {
     isRefreshing
   } = useAuth();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,11 +40,12 @@ const App = () => {
   }, [dispatch]);
 
 
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     navigate("/contacts");
-  //   }
-  // }, [isLoggedIn])
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/contacts");
+    }
+    // eslint-disable-next-line
+  }, []);
   
 
 
@@ -60,18 +61,18 @@ const App = () => {
     
 
   return (
-    <Routes>  
+     <Routes>  
       <Route path="/" element={<Layout />} >
-        <Route index element={<Home />} />
-        <Route path="/login" element={ <Login />} />
-        <Route path="/signup" element={<Register />} />
-          <Route path="contacts" element={
-            <ProtectedRoute isLoggedIn={{ isLoggedIn }}>
-              <Contacts/>
-            </ProtectedRoute>
-            } />
+          <Route index element={<Home />} />
+          <Route path="login" element={ <Login />} />
+          <Route path="signup" element={<Register />} />
+            <Route path="contacts" element={
+              <ProtectedRoute isLoggedIn={{ isLoggedIn }}>
+                <Contacts/>
+              </ProtectedRoute>
+              } />
+          <Route path="*" element={<NotFound/>}/>
       </Route>
-      <Route path="*" element={<NotFound/>}/>
     </Routes>
   )
 };

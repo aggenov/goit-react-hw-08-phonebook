@@ -10,25 +10,29 @@ import { Filter } from 'components/Filter/filter';
 import { Box } from './ContactsPage.styled';
 import { Text } from './ContactsPage.styled';
 
-import {
-  // useAuth,
-  useContact,
-} from 'hooks';
+import { useAuth, useContact } from 'hooks';
 import { RotatingLines } from 'react-loader-spinner';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { Helmet } from 'react-helmet';
+
+
+
 
 export default function ContactsPage() {
+  
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { isLoading, error } = useContact();
-  // const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
 
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     navigate('/login');
-  //   }
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/login');
+    }
+    // eslint-disable-next-line
+  }, [isLoggedIn]);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -36,6 +40,9 @@ export default function ContactsPage() {
 
   return (
     <>
+      <Helmet>
+        <title>Contacts</title>
+      </Helmet>
       <Box>
         <Text>Phonebook</Text>
         <ContactForm />

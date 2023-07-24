@@ -57,7 +57,7 @@ export const ContactForm = () => {
         setName(value);
         break;
 
-      case 'phone':
+      case 'number':
         setNumber(value);
         break;
 
@@ -94,7 +94,7 @@ export const ContactForm = () => {
         Phone 
         <Input
           type='tel' 
-          name='phone'
+          name='number'
           value={number} 
               onChange={handleChange}
               placeholder="_ _ _ - _ _ _ - _ _ _ _"
@@ -109,5 +109,4 @@ export const ContactForm = () => {
     </form>
     </>
   )
-
 }

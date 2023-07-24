@@ -9,9 +9,10 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  margin-top: 15px;
-  width: 200px;
+  margin-top: 5px;
+  width: 250px;
+  height: 25px;
   border: 0.5px solid black;
-  border-radius: 2px;
-  padding: 2px 10px;
+  border-radius: 5px;
+  padding: 5px 15px;
 `;
