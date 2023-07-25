@@ -2,27 +2,28 @@ import PropTypes from "prop-types";
 import { SearchList, ContactItem, Text, Button } from './ContactListItem.styled';
 import { useDispatch } from "react-redux";
 import { deleteContact } from "redux/operations";
-// import { useState } from "react";
-// import Modal from "components/Modal/Modal";
-// import EditForm from "components/EditForm/EditForm";
+
+import { useState } from "react";
+import Modal from "components/Modal/Modal";
+import EditForm from "components/EditForm/EditForm";
 
 export const ContactListItem = ({ renderListItem: { id, name, number } }) => {
-  // const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  // const closeModal = () => {
-  //   if (showModal) {
-  //     setShowModal(false);
-  //   };
-  // };
+  const closeModal = () => {
+    if (showModal) {
+      setShowModal(false);
+    };
+  };
 
-  // const openModal = () => {
-  //   if (!showModal) {
-  //     setShowModal(true);
-  //   };
-  // };
+  const openModal = () => {
+    if (!showModal) {
+      setShowModal(true);
+    };
+  };
   
   const dispatch = useDispatch();
-
+  
   return ( 
 
     <ContactItem key={id}>
@@ -31,14 +32,22 @@ export const ContactListItem = ({ renderListItem: { id, name, number } }) => {
         <Text>{number}</Text>
       </SearchList>
       <div style={{display: "flex", gap: '10px'}}>
-        {/* <Button type="button" style={{width:'36px'}} onClick={openModal}>
+        <Button type="button" style={{width:'36px'}} onClick={openModal}>
         Edit
-      </Button> */}
+      </Button>
       <Button type="button" onClick={() => dispatch(deleteContact(id))}>
         Delete
       </Button>
       </div>
-      {/* {showModal && <Modal onClose={closeModal}><EditForm id={id} name={name} number={number} onClose={closeModal} /></Modal>} */}
+      {showModal &&
+        <Modal onClose={closeModal}>
+          <EditForm
+            id={id}
+            name={name}
+            number={number}
+            onClose={closeModal}
+          />
+        </Modal>}
     </ContactItem> 
      
   );

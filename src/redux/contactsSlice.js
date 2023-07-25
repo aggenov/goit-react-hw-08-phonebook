@@ -58,7 +58,12 @@ const contactsSlice = createSlice({
     //  (4)  editContact
     [editContact.pending]: handlePending,
     [editContact.fulfilled](state, action) {
-      state.items = action.payload;
+      state.items = state.items.map(item => {
+        if (item.id === action.payload.id) {
+          return action.payload;
+        }
+        return item;
+      });
       state.isLoading = false;
     },
     [editContact.rejected]: handleRejected,
