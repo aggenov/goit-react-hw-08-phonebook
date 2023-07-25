@@ -1,4 +1,5 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
+
 import { Container, Title, Text } from './HomePage.styled';
 import { useAuth } from 'hooks';
 import { useEffect } from 'react';

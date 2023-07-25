@@ -3,10 +3,9 @@ import { useEffect, lazy } from "react";
 import {
   Routes,
   Route,
-  useNavigate,
+  // useNavigate,
 } from "react-router-dom";
 
-import ProtectedRoute from "routes/ProtectedRoute";
 
 
 import { useAuth } from "hooks/index";
@@ -17,6 +16,8 @@ import { refreshUser } from "redux/auth/operations";
 import { RotatingLines } from 'react-loader-spinner';
 
 import { Layout } from "components/Layout/Laylout";
+import { RestrictedRoute } from "routes/RestrictedRoute";
+import { PrivateRoute } from "routes/PrivatRoute";
 
 
 const Home = lazy(() => import('pages/homePage/HomePage'));
@@ -28,11 +29,11 @@ const NotFound = lazy(() => import('pages/notFoundPage/NotFoundPage'));
 const App = () => {
 
   const {
-    isLoggedIn,
+    // isLoggedIn,
     isRefreshing
   } = useAuth();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,37 +41,57 @@ const App = () => {
   }, [dispatch]);
 
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/contacts");
-    }
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     navigate("/contacts");
+  //   }
+  //   // eslint-disable-next-line
+  // }, []);
   
 
 
   if (isRefreshing) {
-    return <RotatingLines
+    return 
+  }
+    
+
+  return isRefreshing
+    ? <RotatingLines
             strokeColor="rgb(11, 127, 171)"
             strokeWidth="5"
             animationDuration="0.75"
             width="96"
             visible={true}
-          />
-  }
-    
-
-  return (
+      />
+    :(
      <Routes>  
       <Route path="/" element={<Layout />} >
           <Route index element={<Home />} />
-          <Route path="login" element={ <Login />} />
-          <Route path="signup" element={<Register />} />
-            <Route path="contacts" element={
-                  <ProtectedRoute isLoggedIn={{ isLoggedIn }}>
+          {/* <Route path="login" element={ <Login />} /> */}
+          <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+          }
+        />
+          {/* <Route path="signup" element={<Register />} /> */}
+          <Route
+          path="/signup"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+          }
+        />
+            {/* <Route path="contacts" element={
+                  <ProtectedRoute isLoggedIn={ isLoggedIn }>
                     <Contacts/>
                   </ProtectedRoute>
-              } />
+              } /> */}
+          <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<Contacts />} />
+          }
+        />
           <Route path="*" element={<NotFound/>}/>
       </Route>
     </Routes>
