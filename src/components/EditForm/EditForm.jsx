@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { FormStyle, Label, Input, Button } from "./EditForm.styled";
+import { FormStyle, Label, Input, Button ,Text} from "./EditForm.styled";
 
 import { useDispatch, useSelector } from "react-redux"; 
 import {  editContact } from "redux/operations";
@@ -9,6 +9,7 @@ import { Notify } from 'notiflix';
 
 
 const EditForm = ({ onClose, id, name, number }) => {
+  
   const dispatch = useDispatch();
   
   const initialName = name;
@@ -52,6 +53,20 @@ const EditForm = ({ onClose, id, name, number }) => {
     setTimeout(() => {
       dispatch(editContact())
     }, 500);
+
+    if (initialName !== editName) {
+     Notify.success(`Contact   "${initialName}"  has been changed to "${editName}"`, Notify.init({
+        clickToClose: true,
+        position: 'center-top',
+        }));
+    }
+    if (initialNumber !== editNumber) {
+     Notify.success(`Contact   "${initialName}"  number changed "`, Notify.init({
+        clickToClose: true,
+        position: 'center-top',
+        }));
+      }
+
     form.reset();
   };
 
@@ -61,7 +76,8 @@ const EditForm = ({ onClose, id, name, number }) => {
   return(
     <>
     <form onSubmit={handleSubmit}>
-    <FormStyle>      
+      <FormStyle>      
+          <Text>Edit contact</Text>
       <Label>
         Name 
         <Input

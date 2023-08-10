@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { FormStyle, Label, Input, Button } from "./ContactForm.styled";
+import { FormStyle, Label, Input, Button, Text } from "./ContactForm.styled";
 
 import { useDispatch, useSelector } from "react-redux"; 
 import { addContact } from "redux/operations";
@@ -8,8 +8,8 @@ import { selectContacts } from "redux/selectors";
 import { Notify } from "notiflix";
 
 
-export const ContactForm = () => {
-
+export const ContactForm = ({ onClose }) => {
+  
   //локальный стейт для формы
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -45,6 +45,16 @@ export const ContactForm = () => {
     }
 
     dispatch(addContact(contact));
+
+    // setTimeout(() => {
+    //   dispatch(addContact())
+    // }, 500);
+
+    Notify.success(`Contact "${name}" added in contacts`, Notify.init({
+        clickToClose: true,
+        position: 'center-top',
+      }));
+
     reset();
   };
 
@@ -76,7 +86,8 @@ export const ContactForm = () => {
   return(
     <>
     <form onSubmit={handleSubmit}>
-    <FormStyle>      
+        <FormStyle>      
+          <Text>Add new contact</Text>
       <Label>
         Name 
         <Input
@@ -103,8 +114,11 @@ export const ContactForm = () => {
           required='Phone number required'
         />
       </Label> 
-
-      <Button type="submit" disabled={!name || !number} >Add contact</Button>
+          <div style={{ display: 'flex', gap: '140px', margin:'auto'}}>
+            <Button type="submit" disabled={!name || !number} >Add contact</Button>
+            <Button type="button" onClick={onClose}>Cancel</Button>
+          </div>
+          
     </FormStyle>
     </form>
     </>
